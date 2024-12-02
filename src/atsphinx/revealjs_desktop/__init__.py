@@ -10,7 +10,12 @@ ENTRYPOINT = Template(
     """
 import webview
 
-webview.create_window('sphinx-revealjs presentation', 'contents/index.html')
+window = webview.create_window(
+    title="sphinx-revealjs presentation",
+    url="contents/index.html",
+    width={{ window_width }},
+    height={{ window_height }},
+)
 webview.start()
 """.strip()
 )
@@ -22,14 +27,20 @@ class RevealjsDesktopBuilder(RevealjsHTMLBuilder):  # noqa: D101
 
 def prepare_outdir(app: Sphinx):
     """Override outdir of Sphinx."""
+    ctx = {
+        "window_width": app.config.revealjs_desktop_width,
+        "window_height": app.config.revealjs_desktop_height,
+    }
     entrypoint = app.outdir / "main.py"
-    entrypoint.write_text(ENTRYPOINT.render(), encoding="utf8")
+    entrypoint.write_text(ENTRYPOINT.render(ctx), encoding="utf8")
     app.outdir = app.outdir / "contents"
     app.builder.outdir = app.outdir
 
 
 def setup(app: Sphinx):  # noqa: D103
     app.setup_extension("sphinx_revealjs")
+    app.add_config_value("revealjs_desktop_width", 960, "env", int)
+    app.add_config_value("revealjs_desktop_height", 720, "env", int)
     app.add_builder(RevealjsDesktopBuilder)
     app.connect("builder-inited", prepare_outdir)
     return {
