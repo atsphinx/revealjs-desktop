@@ -28,3 +28,4 @@ tasks:
 
 includes:
   docs: './docs'
+  demo: './demo'
