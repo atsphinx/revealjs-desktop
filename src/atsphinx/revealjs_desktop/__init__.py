@@ -2,7 +2,7 @@
 
 from jinja2 import Template
 from sphinx.application import Sphinx
-from sphinx_revealjs.builders import RevealjsHTMLBuilder
+from sphinx_revealjs.builders import RevealjsHTMLBuilder  # type: ignore
 
 __version__ = "0.0.0"
 
@@ -16,11 +16,12 @@ webview.start()
 )
 
 
-class RevealjsDesktopBuilder(RevealjsHTMLBuilder):
+class RevealjsDesktopBuilder(RevealjsHTMLBuilder):  # noqa: D101
     name = "revealjsdesktop"
 
 
 def prepare_outdir(app: Sphinx):
+    """Override outdir of Sphinx."""
     entrypoint = app.outdir / "main.py"
     entrypoint.write_text(ENTRYPOINT.render(), encoding="utf8")
     app.outdir = app.outdir / "contents"
