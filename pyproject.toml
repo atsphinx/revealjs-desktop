@@ -31,7 +31,12 @@ classifiers = [
 ]
 readme = "README.rst"
 dependencies = [
+    "pywebview[cef]>=5.3.2; platform_system == 'Windows'",
+    "pywebview[qt]>=5.3.2; platform_system == 'Linux'",
+    "pywebview>=5.3.2; platform_system != 'Linux' and platform_system != 'Windows'",
+    "cryptography>=44.0.0",
     "sphinx",
+    "sphinx-revealjs>=3.0.5",
 ]
 
 [project.urls]
