@@ -1,17 +1,14 @@
-.. Demo of atsphinx-revealjs-desktop documentation master file, created by
-   sphinx-quickstart on Tue Dec  3 00:42:27 2024.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Demo of atsphinx-revealjs-desktop documentation
+===============================================
+Your presentation evolve as desktop presentaion
 ===============================================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+Overview
+========
 
+What is this ?
+--------------
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+Sub extension for sphinx-revealjs.
+This is custom builder for Sphinx
+to generate desktop-application component for pywebview.
 
